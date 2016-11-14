@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>War!!</title>
+<title>Combate!!</title>
 </head>
 <body>
 	<h1>Combate!!</h1>

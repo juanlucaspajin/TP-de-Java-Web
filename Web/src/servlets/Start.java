@@ -57,7 +57,7 @@ public class Start extends HttpServlet {
 		request.getSession().setAttribute("P2", p2);
 		//response.sendRedirect("WEB-INF/war.jsp");
 		request.getRequestDispatcher("WEB-INF/Combate.jsp").forward(request, response);
-		response.sendRedirect("Combate");
+		response.sendRedirect("/Combate.jsp");
 	}
 
 }
