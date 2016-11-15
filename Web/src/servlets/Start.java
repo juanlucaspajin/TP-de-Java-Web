@@ -31,7 +31,7 @@ public class Start extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class Start extends HttpServlet {
 		request.getSession().setAttribute("P2", p2);
 		//response.sendRedirect("WEB-INF/war.jsp");
 		request.getRequestDispatcher("WEB-INF/Combate.jsp").forward(request, response);
-		response.sendRedirect("/Combate.jsp");
+		//response.sendRedirect("/Combate.jsp");
 	}
 
 }
