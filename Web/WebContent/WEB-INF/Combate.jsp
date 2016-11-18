@@ -19,50 +19,51 @@
 	<% 
 		Personaje p1= ((Personaje)session.getAttribute("P1"));
 		Personaje p2= ((Personaje)session.getAttribute("P2"));
+		int vida1,vida2,energia1,energia2;
+		vida1 = p1.getVida();
+		vida2 = p2.getVida();
+		energia1 = p1.getEnergia();
+		energia2 = p2.getEnergia();
 	%>
 	<div class="personaje">
-	<form class="form-pers1" action="Combate">
+	<form method="post" class="form-pers1" action="War">
 	<h2>Personaje 1</h2>
 	<label>Nombre</label>
-    <input name="nombre1" type="text"  class="form-controlp1" disabled value=<%=p1.getNombre()%>>
+    <input name="nombre1" type="text"  class="form-controlp1" disabled value="<%=p1.getNombre()%>">
 	<br>
 	<label>Vida</label>
-    <input name="vida1" type="text"  class="form-controlp1" disabled value=<%=request.getAttribute("vida1")%>>
+    <input name="vida1" type="text"  class="form-controlp1" disabled value="<%=String.valueOf(vida1)%>">
 	<br>
 	<label>Energia</label>
-    <input name="energia1" type="text" class="form-controlp1" disabled value=<%=String.valueOf(p1.getEnergia()) %>>
+    <input name="energia1" type="text" class="form-controlp1" disabled value="<%=String.valueOf(energia1) %>">
     <br>
 	<label>Defensa</label>
-    <input name="defensa2" type="text" class="form-controlp1" disabled value=<%=String.valueOf(p1.getDefensa()) %>>
+    <input name="defensa2" type="text" class="form-controlp1" disabled value="<%=String.valueOf(p1.getDefensa()) %>">
     <br>
 	<label>Evasion</label>
-    <input name="evasion1" type="text" class="form-controlp1" disabled value=<%=String.valueOf(p1.getEvasion()) %>>
-	</form>
-	</div>
-	
-	<div class="personaje">
-	<form class="form-pers1" action="Combate">
+    <input name="evasion1" type="text" class="form-controlp1" disabled value="<%=String.valueOf(p1.getEvasion()) %>">
+
 	<h2>Personaje 2</h2>
 	<label>Nombre</label>
-    <input name="nombre2" type="text"  class="form-controlp1" disabled value=<%=p2.getNombre() %>>
+    <input name="nombre2" type="text"  class="form-controlp1" disabled value="<%=p2.getNombre() %>">
 	<br>
 	<label>Vida</label>
-    <input name="vida2" type="text"  class="form-controlp1" disabled value=<%=String.valueOf(p2.getVida()) %>>
+    <input name="vida2" type="text"  class="form-controlp1" disabled value="<%=String.valueOf(vida2) %>">
 	<br>
 	<label>Energia</label>
-    <input name="energia2" type="text" class="form-controlp1" disabled value=<%=String.valueOf(p2.getEnergia()) %>>
+    <input name="energia2" type="text" class="form-controlp1" disabled value="<%=String.valueOf(energia2) %>">
     <br>
 	<label>Defensa</label>
-    <input name="defensa2" type="text" class="form-controlp1" disabled value=<%=String.valueOf(p2.getDefensa()) %>>
+    <input name="defensa2" type="text" class="form-controlp1" disabled value="<%=String.valueOf(p2.getDefensa()) %>">
     <br>
 	<label>Evasion</label>
-    <input name="evasion2" type="text" class="form-controlp1" disabled value=<%=String.valueOf(p2.getEvasion()) %>>
+    <input name="evasion2" type="text" class="form-controlp1" disabled value="<%=String.valueOf(p2.getEvasion()) %>">
 	</form>
 	</div>
 	
 	<div class="acciones">
 	<h2>Turno</h2>
-	<input name="nombreTurno" type="text" class="form-controlp1" disabled value=<%=p1.getNombre() %> >
+	<input name="nombreTurno" type="text" class="form-controlp1" disabled value="<%=p1.getNombre() %>" >
 	<br>
 	<h2>Energia</h2>
 	<input name="energiaUsar" type="text" class="form-controlp1">

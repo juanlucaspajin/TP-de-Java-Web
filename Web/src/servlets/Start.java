@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logic.ControladorABMCPersonaje;
+
 import utils.ApplicationException;
 import entidades.*;
 
@@ -17,7 +20,7 @@ import entidades.*;
 @WebServlet("/Start")
 public class Start extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -51,6 +54,7 @@ public class Start extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		
 		//response.getWriter().append("P1: ").append(p1.getNombre()+" "+p1.getApellido());
 		//response.getWriter().append("P2: ").append(p2.getNombre()+" "+p2.getApellido());
 		request.getSession().setAttribute("P1", p1);
@@ -58,6 +62,9 @@ public class Start extends HttpServlet {
 		//response.sendRedirect("WEB-INF/war.jsp");
 		request.getRequestDispatcher("WEB-INF/Combate.jsp").forward(request, response);
 		//response.sendRedirect("/Combate.jsp");
+		
+		
+		
 	}
 
 }
