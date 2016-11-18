@@ -54,4 +54,10 @@ private data.DataPersonaje dataPer;
 		}
 		
 	}
+	
+	public Personaje busca(String nombre) throws ApplicationException
+	{
+		Personaje per = dataPer.getByName(nombre);
+		return per;
+	}
 }

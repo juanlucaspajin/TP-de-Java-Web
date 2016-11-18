@@ -43,12 +43,12 @@ public class Start extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ControladorABMCPersonaje ctrl = new ControladorABMCPersonaje();
 		Personaje p1= new Personaje();
-		p1.setId(Integer.parseInt(request.getParameter("Personaje1")));
+		p1.setNombre(request.getParameter("Personaje1"));
 		Personaje p2= new Personaje();
-		p2.setId(Integer.parseInt(request.getParameter("Personaje2")));
+		p2.setNombre(request.getParameter("Personaje2"));
 		try {
-			p1=ctrl.busca(p1);
-			p2=ctrl.busca(p2);
+			p1=ctrl.busca(p1.getNombre());
+			p2=ctrl.busca(p2.getNombre());
 		} catch (ApplicationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

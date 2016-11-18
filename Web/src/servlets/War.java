@@ -50,25 +50,23 @@ public class War extends HttpServlet {
 			try {
 				if(controlador.ataque(Integer.parseInt(request.getParameter("energiaUsar")), turno))
 				{
-					MapearPersonajes(p1, p2);
+					p1.setVida(controlador.getVidaP1());
+					p1.setEnergia(controlador.getEnergiaP1());
+					p2.setVida(controlador.getVidaP2());
+					p2.setEnergia(controlador.getEnergiaP2());
 					request.getSession().setAttribute("P1", p1);
 					request.getSession().setAttribute("P2", p2);
-//					request.getSession().setAttribute("vida1", String.valueOf(controlador.getVidaP1()));
-//					request.getSession().setAttribute("vida2", String.valueOf(controlador.getVidaP2()));
-//					request.getSession().setAttribute("energia1", String.valueOf(controlador.getEnergiaP1()));
-//					request.getSession().setAttribute("energia2", String.valueOf(controlador.getEnergiaP2()));
 					request.getSession().setAttribute("nombreTurno", controlador.getPerTurno()); 
 					
 					
 					
-					out.println("<script language='JavaScript'>alert('Hello');</script>" );
+					out.println("<script language='JavaScript'>alert('Ha ganado');</script>" );
 					response.sendRedirect("Index.html");
 				}else{
-//					request.getSession().setAttribute("vida1", String.valueOf(controlador.getVidaP1()));
-//					request.getSession().setAttribute("vida2", String.valueOf(controlador.getVidaP2()));
-//					request.getSession().setAttribute("energia1", String.valueOf(controlador.getEnergiaP1()));
-//					request.getSession().setAttribute("energia2", String.valueOf(controlador.getEnergiaP2()));
-					MapearPersonajes(p1, p2);
+					p1.setVida(controlador.getVidaP1());
+					p1.setEnergia(controlador.getEnergiaP1());
+					p2.setVida(controlador.getVidaP2());
+					p2.setEnergia(controlador.getEnergiaP2());
 					request.getSession().setAttribute("P1", p1);
 					request.getSession().setAttribute("P2", p2);
 					request.getSession().setAttribute("nombreTurno", controlador.getPerTurno());
@@ -106,13 +104,13 @@ public class War extends HttpServlet {
 		
 	}
 	
-	public void MapearPersonajes(Personaje p1, Personaje p2)
-	{
-		p1.setVida(controlador.getVidaP1());
-		p1.setEnergia(controlador.getEnergiaP1());
-		p2.setVida(controlador.getVidaP2());
-		p2.setEnergia(controlador.getEnergiaP2());
-	}
+//	public void MapearPersonajes(Personaje p1, Personaje p2)
+//	{
+//		p1.setVida(controlador.getVidaP1());
+//		p1.setEnergia(controlador.getEnergiaP1());
+//		p2.setVida(controlador.getVidaP2());
+//		p2.setEnergia(controlador.getEnergiaP2());
+//	}
 
 
 
