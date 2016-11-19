@@ -25,8 +25,8 @@
 		energia1 = p1.getEnergia();
 		energia2 = p2.getEnergia();
 	%>
-	<div class="personaje">
 	<form method="post" class="form-pers1" action="War">
+	<div class="personaje">
 	<h2>Personaje 1</h2>
 	<label>Nombre</label>
     <input name="nombre1" type="text"  class="form-controlp1" disabled value="<%=p1.getNombre()%>">
@@ -58,12 +58,12 @@
     <br>
 	<label>Evasion</label>
     <input name="evasion2" type="text" class="form-controlp1" disabled value="<%=String.valueOf(p2.getEvasion()) %>">
-	</form>
+	
 	</div>
 	
 	<div class="acciones">
 	<h2>Turno</h2>
-	<input name="nombreTurno" type="text" class="form-controlp1" disabled value="<%=p1.getNombre() %>" >
+	<input name="nombreTurno" type="text" class="form-controlp1" disabled value="<%=String.valueOf(session.getAttribute("nombreTurno")) %>" >
 	<br>
 	<h2>Energia</h2>
 	<input name="energiaUsar" type="text" class="form-controlp1">
@@ -71,6 +71,6 @@
 	<button name="atacar" class="btn btn-primary btn-lg" type="submit">Atacar</button>
 	<button name="defender" class="btn btn-lg btn-default" type="submit">Defender</button>
 	</div>
-
+	</form>
 </body>
 </html>

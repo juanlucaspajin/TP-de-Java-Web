@@ -26,6 +26,7 @@ public class War extends HttpServlet {
      */
     public War() {
         super();
+        
         // TODO Auto-generated constructor stub
     }
 
@@ -50,31 +51,27 @@ public class War extends HttpServlet {
 			try {
 				if(controlador.ataque(Integer.parseInt(request.getParameter("energiaUsar")), turno))
 				{
-					MapearPersonajes(p1, p2);
+					p1.setVida(controlador.getVidaP1());
+					p1.setEnergia(controlador.getEnergiaP1());
+					p2.setVida(controlador.getVidaP2());
+					p2.setEnergia(controlador.getEnergiaP2());
 					request.getSession().setAttribute("P1", p1);
 					request.getSession().setAttribute("P2", p2);
-//					request.getSession().setAttribute("vida1", String.valueOf(controlador.getVidaP1()));
-//					request.getSession().setAttribute("vida2", String.valueOf(controlador.getVidaP2()));
-//					request.getSession().setAttribute("energia1", String.valueOf(controlador.getEnergiaP1()));
-//					request.getSession().setAttribute("energia2", String.valueOf(controlador.getEnergiaP2()));
-					request.getSession().setAttribute("nombreTurno", controlador.getPerTurno()); 
-					
-					
-					
-					out.println("<script language='JavaScript'>alert('Hello');</script>" );
-					response.sendRedirect("Index.html");
+					request.getSession().setAttribute("nombreTurno", controlador.getPerTurno());					
+					out.println("<script language='JavaScript'>alert('Ha ganado');</script>" );
+					request.setAttribute("msg", "Gano ¿?");
+					request.getRequestDispatcher("WEB-INF/Winner.jsp").forward(request, response);
 				}else{
-//					request.getSession().setAttribute("vida1", String.valueOf(controlador.getVidaP1()));
-//					request.getSession().setAttribute("vida2", String.valueOf(controlador.getVidaP2()));
-//					request.getSession().setAttribute("energia1", String.valueOf(controlador.getEnergiaP1()));
-//					request.getSession().setAttribute("energia2", String.valueOf(controlador.getEnergiaP2()));
-					MapearPersonajes(p1, p2);
+					p1.setVida(controlador.getVidaP1());
+					p1.setEnergia(controlador.getEnergiaP1());
+					p2.setVida(controlador.getVidaP2());
+					p2.setEnergia(controlador.getEnergiaP2());
 					request.getSession().setAttribute("P1", p1);
 					request.getSession().setAttribute("P2", p2);
 					request.getSession().setAttribute("nombreTurno", controlador.getPerTurno());
 					
-					
 					this.cambiaTurno();
+					request.getRequestDispatcher("WEB-INF/Combate.jsp").forward(request, response);
 				}
 			} catch (NumberFormatException e) {
 				out.println("<script type=\"text/javascript\">alert('Error en la energia');</script>");
@@ -84,15 +81,26 @@ public class War extends HttpServlet {
 			}
 		}
 		
+		if(request.getParameter("defender")!= null) {
+			
+			controlador.defensa(turno);			
+			p1.setVida(controlador.getVidaP1());
+			p1.setEnergia(controlador.getEnergiaP1());
+			p2.setVida(controlador.getVidaP2());
+			p2.setEnergia(controlador.getEnergiaP2());
+			request.getSession().setAttribute("P1", p1);
+			request.getSession().setAttribute("P2", p2);
+			request.getSession().setAttribute("nombreTurno", controlador.getPerTurno());
+			this.cambiaTurno();
+			request.getRequestDispatcher("WEB-INF/Combate.jsp").forward(request, response);
+			
+		}
 		
-		request.getRequestDispatcher("WEB-INF/Combate.jsp").forward(request, response);
+		
+		//request.getRequestDispatcher("WEB-INF/Combate.jsp").forward(request, response);
 		
 	}
 	
-	protected void service(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-		
-	}
 
 	private void cambiaTurno() {
 		if (turno == 1) 
@@ -106,13 +114,13 @@ public class War extends HttpServlet {
 		
 	}
 	
-	public void MapearPersonajes(Personaje p1, Personaje p2)
-	{
-		p1.setVida(controlador.getVidaP1());
-		p1.setEnergia(controlador.getEnergiaP1());
-		p2.setVida(controlador.getVidaP2());
-		p2.setEnergia(controlador.getEnergiaP2());
-	}
+//	public void MapearPersonajes(Personaje p1, Personaje p2)
+//	{
+//		p1.setVida(controlador.getVidaP1());
+//		p1.setEnergia(controlador.getEnergiaP1());
+//		p2.setVida(controlador.getVidaP2());
+//		p2.setEnergia(controlador.getEnergiaP2());
+//	}
 
 
 
