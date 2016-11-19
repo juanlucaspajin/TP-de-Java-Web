@@ -20,12 +20,13 @@ import utils.ApplicationException;
 public class War extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private int turno=1;
-    private CtrlCombate controlador = new CtrlCombate();
+    private CtrlCombate controlador ;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public War() {
         super();
+
         // TODO Auto-generated constructor stub
     }
 
@@ -42,37 +43,33 @@ public class War extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Personaje p1 = (Personaje)request.getSession().getAttribute("P1");
-		Personaje p2 = (Personaje)request.getSession().getAttribute("P2");
-		controlador.seteaPer(p1, p2);
+		/*Personaje p1 = (Personaje)request.getSession().getAttribute("P1");
+		Personaje p2 = (Personaje)request.getSession().getAttribute("P2");*/
+		controlador = (CtrlCombate)request.getSession().getAttribute("CtrlCombate");
 		PrintWriter out = response.getWriter(); 
 		if(request.getParameter("atacar")!= null){
 			try {
 				if(controlador.ataque(Integer.parseInt(request.getParameter("energiaUsar")), turno))
 				{
-					p1.setVida(controlador.getVidaP1());
+					/*p1.setVida(controlador.getVidaP1());
 					p1.setEnergia(controlador.getEnergiaP1());
 					p2.setVida(controlador.getVidaP2());
 					p2.setEnergia(controlador.getEnergiaP2());
 					request.getSession().setAttribute("P1", p1);
-					request.getSession().setAttribute("P2", p2);
-					request.getSession().setAttribute("nombreTurno", controlador.getPerTurno()); 
-					
-					
-					
-					out.println("<script language='JavaScript'>alert('Ha ganado');</script>" );
-					response.sendRedirect("Index.html");
+					request.getSession().setAttribute("P2", p2);*/
+					request.getSession().setAttribute("nombreTurno", controlador.getPerTurno()); 					
+					request.getSession().setAttribute("msg", "Aca va el ganador");
+					request.getRequestDispatcher("WEB-INF/Winner.jsp").forward(request, response);
 				}else{
-					p1.setVida(controlador.getVidaP1());
+					/*p1.setVida(controlador.getVidaP1());
 					p1.setEnergia(controlador.getEnergiaP1());
 					p2.setVida(controlador.getVidaP2());
 					p2.setEnergia(controlador.getEnergiaP2());
 					request.getSession().setAttribute("P1", p1);
-					request.getSession().setAttribute("P2", p2);
+					request.getSession().setAttribute("P2", p2);*/
 					request.getSession().setAttribute("nombreTurno", controlador.getPerTurno());
-					
-					
 					this.cambiaTurno();
+					request.getRequestDispatcher("WEB-INF/Combate.jsp").forward(request, response);
 				}
 			} catch (NumberFormatException e) {
 				out.println("<script type=\"text/javascript\">alert('Error en la energia');</script>");
@@ -82,15 +79,24 @@ public class War extends HttpServlet {
 			}
 		}
 		
+		if(request.getParameter("defender")!= null) {
+			
+			controlador.defensa(turno);			
+			/*p1.setVida(controlador.getVidaP1());
+			p1.setEnergia(controlador.getEnergiaP1());
+			p2.setVida(controlador.getVidaP2());
+			p2.setEnergia(controlador.getEnergiaP2());
+			request.getSession().setAttribute("P1", p1);
+			request.getSession().setAttribute("P2", p2);*/
+			request.getSession().setAttribute("nombreTurno", controlador.getPerTurno());
+			this.cambiaTurno();
+			request.getRequestDispatcher("WEB-INF/Combate.jsp").forward(request, response);
+			
+		}
 		
-		request.getRequestDispatcher("WEB-INF/Combate.jsp").forward(request, response);
 		
 	}
 	
-	protected void service(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-		
-	}
 
 	private void cambiaTurno() {
 		if (turno == 1) 

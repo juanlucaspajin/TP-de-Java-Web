@@ -1,3 +1,4 @@
+<%@page import="logic.CtrlCombate"%>
 <%@page import="entidades.Personaje"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -19,14 +20,16 @@
 	<% 
 		Personaje p1= ((Personaje)session.getAttribute("P1"));
 		Personaje p2= ((Personaje)session.getAttribute("P2"));
+		CtrlCombate combate = (CtrlCombate)session.getAttribute("CtrlCombate");
 		int vida1,vida2,energia1,energia2;
-		vida1 = p1.getVida();
-		vida2 = p2.getVida();
-		energia1 = p1.getEnergia();
-		energia2 = p2.getEnergia();
+		vida1 = combate.getVidaP1();
+		vida2 = combate.getVidaP2();
+		energia1 = combate.getEnergiaP1();
+		energia2 = combate.getEnergiaP2();
 	%>
-	<div class="personaje">
+	
 	<form method="post" class="form-pers1" action="War">
+	<div class="personaje">
 	<h2>Personaje 1</h2>
 	<label>Nombre</label>
     <input name="nombre1" type="text"  class="form-controlp1" disabled value="<%=p1.getNombre()%>">
@@ -58,12 +61,12 @@
     <br>
 	<label>Evasion</label>
     <input name="evasion2" type="text" class="form-controlp1" disabled value="<%=String.valueOf(p2.getEvasion()) %>">
-	</form>
+	
 	</div>
 	
 	<div class="acciones">
 	<h2>Turno</h2>
-	<input name="nombreTurno" type="text" class="form-controlp1" disabled value="<%=p1.getNombre() %>" >
+	<input name="nombreTurno" type="text" class="form-controlp1" disabled value="<%=String.valueOf(session.getAttribute("nombreTurno")) %>" >
 	<br>
 	<h2>Energia</h2>
 	<input name="energiaUsar" type="text" class="form-controlp1">
@@ -71,6 +74,7 @@
 	<button name="atacar" class="btn btn-primary btn-lg" type="submit">Atacar</button>
 	<button name="defender" class="btn btn-lg btn-default" type="submit">Defender</button>
 	</div>
+	</form>
 
 </body>
 </html>

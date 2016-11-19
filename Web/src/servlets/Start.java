@@ -13,6 +13,7 @@ import logic.ControladorABMCPersonaje;
 
 import utils.ApplicationException;
 import entidades.*;
+import logic.CtrlCombate;
 
 /**
  * Servlet implementation class Start
@@ -43,12 +44,15 @@ public class Start extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ControladorABMCPersonaje ctrl = new ControladorABMCPersonaje();
 		Personaje p1= new Personaje();
+		CtrlCombate controlador = new CtrlCombate();
 		p1.setNombre(request.getParameter("Personaje1"));
 		Personaje p2= new Personaje();
-		p2.setNombre(request.getParameter("Personaje2"));
+		p2.setNombre(request.getParameter("Personaje2"));	
 		try {
 			p1=ctrl.busca(p1.getNombre());
 			p2=ctrl.busca(p2.getNombre());
+			controlador.seteaPer(p1, p2);
+			request.getSession().setAttribute("CtrlCombate", controlador);
 		} catch (ApplicationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,6 +63,7 @@ public class Start extends HttpServlet {
 		//response.getWriter().append("P2: ").append(p2.getNombre()+" "+p2.getApellido());
 		request.getSession().setAttribute("P1", p1);
 		request.getSession().setAttribute("P2", p2);
+		request.getSession().setAttribute("nombreTurno", p1.getNombre());
 		//response.sendRedirect("WEB-INF/war.jsp");
 		request.getRequestDispatcher("WEB-INF/Combate.jsp").forward(request, response);
 		//response.sendRedirect("/Combate.jsp");

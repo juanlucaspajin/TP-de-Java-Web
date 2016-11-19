@@ -3,6 +3,8 @@ import entidades.Personaje;
 import utils.ApplicationException;
 import utils.SuperLogger;
 import data.*;
+
+import java.io.PrintWriter;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
@@ -16,6 +18,7 @@ public class CtrlCombate {
 	private int vidaP1, vidaP2, energiaP1, energiaP2;
 	private String perTurno;
 	private String ganador;
+	
 	
 	public String getPerTurno() {
 		return perTurno;
@@ -87,6 +90,7 @@ public class CtrlCombate {
 		this.setVidaP2(pers2.getVida());
 		this.setEnergiaP1(pers1.getEnergia());
 		this.setEnergiaP2(pers2.getEnergia());
+		perTurno = p1.getNombre();
 		
 	}
 
@@ -149,12 +153,12 @@ public void atacar(int energia,int turno)
 	
 		 if(!this.evadir(turno))
 	     {
-	this.quitaVida(energia,turno);
-		  }
+			 this.quitaVida(energia,turno);
+		 }
 		 else 
-			{
-				notifyUser("Ataque evadido");
-			}
+		{
+			notifyUser("Ataque evadido");
+		}
 		 this.quitaEnergia(energia,turno);
 		
 }
