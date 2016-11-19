@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import entidades.Personaje;
 import logic.CtrlCombate;
 import utils.ApplicationException;
 
@@ -42,31 +41,17 @@ public class War extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		/*Personaje p1 = (Personaje)request.getSession().getAttribute("P1");
-		Personaje p2 = (Personaje)request.getSession().getAttribute("P2");*/
+
 		controlador = (CtrlCombate)request.getSession().getAttribute("CtrlCombate");
 		PrintWriter out = response.getWriter(); 
 		if(request.getParameter("atacar")!= null){
 			try {
 				if(controlador.ataque(Integer.parseInt(request.getParameter("energiaUsar")), turno))
 				{
-					/*p1.setVida(controlador.getVidaP1());
-					p1.setEnergia(controlador.getEnergiaP1());
-					p2.setVida(controlador.getVidaP2());
-					p2.setEnergia(controlador.getEnergiaP2());
-					request.getSession().setAttribute("P1", p1);
-					request.getSession().setAttribute("P2", p2);*/
 					request.getSession().setAttribute("nombreTurno", controlador.getPerTurno()); 					
-					request.getSession().setAttribute("msg", "Aca va el ganador");
+					request.getSession().setAttribute("msg", "personaje: "+ String.valueOf(controlador.getPerTurno()));
 					request.getRequestDispatcher("WEB-INF/Winner.jsp").forward(request, response);
 				}else{
-					/*p1.setVida(controlador.getVidaP1());
-					p1.setEnergia(controlador.getEnergiaP1());
-					p2.setVida(controlador.getVidaP2());
-					p2.setEnergia(controlador.getEnergiaP2());
-					request.getSession().setAttribute("P1", p1);
-					request.getSession().setAttribute("P2", p2);*/
 					request.getSession().setAttribute("nombreTurno", controlador.getPerTurno());
 					this.cambiaTurno();
 					request.getRequestDispatcher("WEB-INF/Combate.jsp").forward(request, response);
@@ -82,12 +67,6 @@ public class War extends HttpServlet {
 		if(request.getParameter("defender")!= null) {
 			
 			controlador.defensa(turno);			
-			/*p1.setVida(controlador.getVidaP1());
-			p1.setEnergia(controlador.getEnergiaP1());
-			p2.setVida(controlador.getVidaP2());
-			p2.setEnergia(controlador.getEnergiaP2());
-			request.getSession().setAttribute("P1", p1);
-			request.getSession().setAttribute("P2", p2);*/
 			request.getSession().setAttribute("nombreTurno", controlador.getPerTurno());
 			this.cambiaTurno();
 			request.getRequestDispatcher("WEB-INF/Combate.jsp").forward(request, response);
@@ -109,17 +88,5 @@ public class War extends HttpServlet {
 		}
 		
 	}
-	
-//	public void MapearPersonajes(Personaje p1, Personaje p2)
-//	{
-//		p1.setVida(controlador.getVidaP1());
-//		p1.setEnergia(controlador.getEnergiaP1());
-//		p2.setVida(controlador.getVidaP2());
-//		p2.setEnergia(controlador.getEnergiaP2());
-//	}
-
-
-
-
 
 }

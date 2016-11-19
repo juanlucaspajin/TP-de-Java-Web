@@ -4,9 +4,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Ganador</title>
+
+	<link href="C:\Users\Juan Lucas\git\Web\Web\build\css\bootstrap.min.css" rel="stylesheet">
+
+	<link href="C:\Users\Juan Lucas\git\Web\Web\build\css\signin.css" rel="stylesheet">
+	
+	<link href="C:\Users\Juan Lucas\git\Web\Web\build\css\Personajes.css" rel="stylesheet">
+	
 </head>
 <body>
-		<h1>Gano: <%=session.getAttribute("msg") %></h1>
+		<h1>Gano el <%=session.getAttribute("msg") %></h1>
+		<form method="post" action="Win">
+			<button name="volver" class="btn btn-primary btn-lg" type="submit">Volver</button>
+		</form>
 </body>
 </html>

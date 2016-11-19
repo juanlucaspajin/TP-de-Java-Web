@@ -19,7 +19,7 @@ public class CtrlCombate {
 	private String perTurno;
 	private String ganador;
 	
-	
+
 	public String getPerTurno() {
 		return perTurno;
 	}
@@ -150,16 +150,16 @@ else { throw new ApplicationException();} }
 
 public void atacar(int energia,int turno)
 { 
-	
 		 if(!this.evadir(turno))
 	     {
 			 this.quitaVida(energia,turno);
 		 }
 		 else 
 		{
-			notifyUser("Ataque evadido");
+			//notifyUser("Ataque evadido");
 		}
 		 this.quitaEnergia(energia,turno);
+
 		
 }
 
