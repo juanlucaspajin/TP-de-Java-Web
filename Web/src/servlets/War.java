@@ -52,6 +52,11 @@ public class War extends HttpServlet {
 					request.getSession().setAttribute("msg", "personaje: "+ String.valueOf(controlador.getPerTurno()));
 					request.getRequestDispatcher("WEB-INF/Winner.jsp").forward(request, response);
 				}else{
+					if(controlador.isEvadido())
+					{
+						request.setAttribute("evadido", "El ataque fue evadido");
+						controlador.setEvadido(false);
+					}
 					request.getSession().setAttribute("nombreTurno", controlador.getPerTurno());
 					this.cambiaTurno();
 					request.getRequestDispatcher("WEB-INF/Combate.jsp").forward(request, response);

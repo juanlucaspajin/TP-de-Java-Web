@@ -60,4 +60,15 @@ private data.DataPersonaje dataPer;
 		Personaje per = dataPer.getByName(nombre);
 		return per;
 	}
+	
+	public ArrayList<Personaje> getAll()
+	{
+		try {
+			personajes = dataPer.getPersonajes();
+		} catch (ApplicationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return personajes;
+	}
 }

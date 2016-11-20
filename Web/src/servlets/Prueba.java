@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Win
+ * Servlet implementation class Prueba
  */
-@WebServlet("/Win")
-public class Win extends HttpServlet {
+@WebServlet("/Prueba")
+public class Prueba extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Win() {
+    public Prueba() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,6 @@ public class Win extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -34,7 +33,14 @@ public class Win extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/Index.jsp").forward(request, response);
+		if(request.getParameter("combate")!= null)
+		{
+			request.getRequestDispatcher("WEB-INF/Index.jsp").forward(request, response);
+		}
+		if(request.getParameter("opciones")!=null)
+		{
+			request.getRequestDispatcher("WEB-INF/Abm.jsp").forward(request, response);
+		}
 	}
 
 }

@@ -4,7 +4,6 @@ import utils.ApplicationException;
 import utils.SuperLogger;
 import data.*;
 
-import java.io.PrintWriter;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
@@ -18,7 +17,16 @@ public class CtrlCombate {
 	private int vidaP1, vidaP2, energiaP1, energiaP2;
 	private String perTurno;
 	private String ganador;
+	private boolean evadido = false;
 	
+
+	public boolean isEvadido() {
+		return evadido;
+	}
+
+	public void setEvadido(boolean evadido) {
+		this.evadido = evadido;
+	}
 
 	public String getPerTurno() {
 		return perTurno;
@@ -156,7 +164,7 @@ public void atacar(int energia,int turno)
 		 }
 		 else 
 		{
-			//notifyUser("Ataque evadido");
+			evadido = true;
 		}
 		 this.quitaEnergia(energia,turno);
 

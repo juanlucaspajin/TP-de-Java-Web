@@ -12,9 +12,13 @@
 	
 	<link href="C:\Users\Juan Lucas\git\Web\Web\build\css\Personajes.css" rel="stylesheet">
 	
+	<style type="text/css">
+    <%@include file="bootstrap.min.css" %>
+    <%@include file="signin.css" %>
+	</style>	
 </head>
 <body>
-		<h1>Gano el <%=session.getAttribute("msg") %></h1>
+		<h1 align="center">Gano el <%=session.getAttribute("msg") %></h1>
 		<form method="post" action="Win">
 			<button name="volver" class="btn btn-primary btn-lg" type="submit">Volver</button>
 		</form>

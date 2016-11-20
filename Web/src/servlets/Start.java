@@ -1,7 +1,7 @@
 package servlets;
 
 import java.io.IOException;
-
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -58,6 +58,8 @@ public class Start extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		ArrayList<Personaje> personajes = ctrl.getAll();
+		request.getSession().setAttribute("personajes", personajes);
 		
 		//response.getWriter().append("P1: ").append(p1.getNombre()+" "+p1.getApellido());
 		//response.getWriter().append("P2: ").append(p2.getNombre()+" "+p2.getApellido());

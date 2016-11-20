@@ -1,6 +1,7 @@
 package data;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -329,6 +330,64 @@ public class DataPersonaje {
 		}
 		
 		return coincide;
+		
+	}
+	public ArrayList<Personaje> getPersonajes() throws ApplicationException{
+		ResultSet rs=null;
+		PreparedStatement stmt=null;
+		ArrayList<Personaje> lista = new ArrayList<Personaje>();
+		
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+					"select * from personajes",PreparedStatement.RETURN_GENERATED_KEYS);
+			// PreparedStatement.RETURN_GENERATED_KEYS to be able to retrieve id generated on the db
+			// by the autoincrement column. Otherwise don't use it
+						
+
+			
+			
+			//after executing the insert use the following lines to retrieve the id
+			rs=stmt.executeQuery();
+			if(rs!=null){
+										
+			while(rs.next())
+			{
+				Personaje p = new Personaje();
+			
+				p.setId(rs.getInt("id"));
+				p.setNombre(rs.getString("nombre"));
+				p.setVida(rs.getInt("vida"));
+				p.setEnergia(rs.getInt("energia"));
+				p.setDefensa(rs.getInt("defensa"));
+				p.setEvasion(rs.getInt("evasion"));
+				p.setPuntosTotales(rs.getInt("puntos_totales"));
+				
+				lista.add(p);
+			}
+			}		
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new ApplicationException("Error al recuperar persoajes",e);
+		} catch (ApplicationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();;
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(stmt!=null)stmt.close();
+				FactoryConexion.getInstancia().releaseConn();
+			} catch (ApplicationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return lista;
 		
 	}
 	
