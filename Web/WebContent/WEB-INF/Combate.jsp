@@ -105,7 +105,9 @@ div.acciones {
 	<%
 		if(request.getAttribute("evadido")!=null)
 		{
-			out.println(request.getAttribute("evadido"));
+			%>	<div class="acciones">
+					<h2><%=request.getAttribute("evadido") %></h2>					
+				</div> <% 
 		}
 	%>
 	</form>
